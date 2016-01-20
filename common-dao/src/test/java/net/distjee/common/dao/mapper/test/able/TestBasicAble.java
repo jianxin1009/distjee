@@ -31,6 +31,9 @@ import net.distjee.common.dao.mapper.mapper.MybatisHelper;
 import net.distjee.common.dao.mapper.mapper.UserInfoAbleMapper;
 import net.distjee.common.dao.mapper.model.UserInfoAble;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 测试增删改查
  *
@@ -117,6 +120,63 @@ public class TestBasicAble {
             sqlSession.close();
         }
     }
+
+    /**
+     * 根据主键更新非null
+     */
+    @Test
+    public void testUpdateBatchByPrimaryKeySelective() {
+        SqlSession sqlSession = MybatisHelper.getSqlSession();
+        try {
+            UserInfoAbleMapper mapper = sqlSession.getMapper(UserInfoAbleMapper.class);
+            UserInfoAble userInfo0 = mapper.selectByPrimaryKey(1);
+            UserInfoAble userInfo1 = mapper.selectByPrimaryKey(2);
+            UserInfoAble userInfo2 = mapper.selectByPrimaryKey(3);
+            UserInfoAble userInfo3 = mapper.selectByPrimaryKey(4);
+            Assert.assertNotNull(userInfo0);
+            Assert.assertNotNull(userInfo1);
+            Assert.assertNotNull(userInfo2);
+            Assert.assertNotNull(userInfo3);
+            userInfo0.setUsername("用户名0");
+            userInfo1.setUsername("用户名1");
+            userInfo2.setUsername("用户名2");
+            userInfo3.setUsername("用户名3");
+            List<UserInfoAble> userInfoAbles = new ArrayList<UserInfoAble>();
+            userInfoAbles.add(userInfo0);
+            userInfoAbles.add(userInfo1);
+            userInfoAbles.add(userInfo2);
+            userInfoAbles.add(userInfo3);
+            Assert.assertEquals(1, mapper.updateBatchByPrimaryKeySelective(userInfoAbles));
+
+            userInfo0 = mapper.selectByPrimaryKey(1);
+            userInfo1 = mapper.selectByPrimaryKey(2);
+            userInfo2 = mapper.selectByPrimaryKey(3);
+            userInfo3 = mapper.selectByPrimaryKey(4);
+            Assert.assertNotEquals("用户名0", userInfo0.getUsername());
+            Assert.assertNotEquals("用户名1", userInfo1.getUsername());
+            Assert.assertNotEquals("用户名2", userInfo2.getUsername());
+            Assert.assertNotEquals("用户名3", userInfo3.getUsername());
+        } finally {
+            sqlSession.rollback();
+            sqlSession.close();
+        }
+    }
+
+    /**
+     * 测试按主键批量删除
+     */
+    @Test
+    public void testDeleteByPrimaryKeys(){
+        SqlSession sqlSession = MybatisHelper.getSqlSession();
+        try {
+            UserInfoAbleMapper mapper = sqlSession.getMapper(UserInfoAbleMapper.class);
+            Assert.assertEquals(4, mapper.deleteByPrimaryKeys(1,2,3,4));
+        } finally {
+            sqlSession.rollback();
+            sqlSession.close();
+        }
+    }
+
 
 
 }

@@ -24,10 +24,10 @@
 
 package net.distjee.common.dao.mapper.provider.base;
 
-import org.apache.ibatis.mapping.MappedStatement;
 import net.distjee.common.dao.mapper.mapperhelper.MapperHelper;
 import net.distjee.common.dao.mapper.mapperhelper.MapperTemplate;
 import net.distjee.common.dao.mapper.mapperhelper.SqlHelper;
+import org.apache.ibatis.mapping.MappedStatement;
 
 /**
  * BaseUpdateProvider实现类，基础方法实现类
@@ -59,8 +59,8 @@ public class BaseUpdateProvider extends MapperTemplate {
         StringBuilder sql = new StringBuilder();
         sql.append("<foreach collection=\"list\" item=\"item\" index=\"index\" open=\"\" close=\"\" separator=\";\">");
         sql.append(SqlHelper.updateTable(entityClass, tableName(entityClass)));
-        sql.append(SqlHelper.updateSetColumns(entityClass, null, true, false));
-        sql.append(SqlHelper.wherePKColumns(entityClass));
+        sql.append(SqlHelper.updateSetColumns(entityClass, "item", true, false));
+        sql.append(SqlHelper.wherePKColumns(entityClass,"item"));
         sql.append("</foreach>");
         return sql.toString();
     }
