@@ -53,7 +53,7 @@
                 <property name="url" value="jdbc:hsqldb:mem:basetest" />
                 <property name="username" value="sa" />
                 <!--<property name="driver" value="com.mysql.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://192.168.16.137:3306/test" />
+                <property name="url" value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;allowMultiQueries=true" />
                 <property name="username" value="root" />
                 <property name="password" value="" />-->
             </dataSource>
