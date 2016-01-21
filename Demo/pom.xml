@@ -9,7 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common-config</artifactId>
+    <artifactId>demo</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>demo-app</module>
+        <module>demo-model</module>
+        <module>demo-model-mapper</module>
+        <module>demo-dao</module>
+        <module>demo-interface</module>
+        <module>demo-facade</module>
+        <module>demo-service</module>
+        <module>demo-publisher</module>
+    </modules>
 
 
 </project>

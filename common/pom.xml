@@ -9,17 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common-core</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>net.distjee</groupId>
-            <artifactId>common-utils</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.distjee</groupId>
-            <artifactId>common-dao</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
+    <artifactId>common</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>common-dao</module>
+        <module>common-config</module>
+        <module>common-core</module>
+        <module>common-utils</module>
+        <module>common-web</module>
+    </modules>
+
 </project>
