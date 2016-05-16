@@ -11,6 +11,7 @@
     <modules>
         <module>demo</module>
         <module>common</module>
+        <module>permission</module>
     </modules>
     <properties>
         <spring.version>3.1.2.RELEASE</spring.version>
